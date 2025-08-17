@@ -5,16 +5,14 @@ class crc {
         int gp[] = {1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,1};
         int count = 0;
         for (int i = 0; i < k; i++) {
-            if (a[i] == gp[0])
-                if (a[i] == gp) {
-                    for (int j = i; j < 17 + i; j++) {
-                        a[j] = a[j] ^ gp[count++];
-                    }
-                    count = 0;
+            if (a[i] == gp[0]) {
+                for (int j = i; j < 17 + i; j++) {
+                    a[j] = a[j] ^ gp[count++];
                 }
+                count = 0;
+            }
         }
     }
-
     public static void main(String args[]) {
         int a[] = new int[100];
         int b[] = new int;
@@ -37,13 +35,11 @@ class crc {
         }
         ob.div(a, k);
         for (int i = 0; i < len; i++) a[i] = a[i] ^ b[i];
-
         System.out.println("Data to be transmitted: ");
         for (int i = 0; i < len; i++) {
             System.out.print(a[i] + " ");
         }
         System.out.println();
-
         System.out.println("Enter the Received Data: ");
         for (int i = 0; i < len; i++) {
             a[i] = sc.nextInt();
