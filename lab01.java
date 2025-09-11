@@ -1,59 +1,55 @@
 import java.util.*;
 
-class crc {
+class CRC {
     void div(int a[], int k) {
-        int gp[] = {1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,1};
-        int count = 0;
-        for (int i = 0; i < k; i++) {
-            if (a[i] == gp[0]) {
-                for (int j = i; j < 17 + i; j++) {
-                    a[j] = a[j] ^ gp[count++];
-                }
-                count = 0;
-            }
-        }
+        int gp[] = { 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
+        for (int i = 0; i < k; i++)
+            if (a[i] == 1)
+                for (int j = 0; j < gp.length; j++)
+                    a[i + j] ^= gp[j];
     }
+
     public static void main(String args[]) {
-        int a[] = new int[100];
-        int b[] = new int;
-        int len, k;
-        crc ob = new crc();
-        System.out.println("Enter the length of Data Frame:");
         Scanner sc = new Scanner(System.in);
-        len = sc.nextInt();
-        int flag = 0;
-        System.out.println("Enter the Message:");
-        for (int i = 0; i < len; i++) {
+        int a[] = new int[100], b[] = new int[100];
+        System.out.print("Enter the length of Data Frame: ");
+        int len = sc.nextInt();
+        System.out.println("Enter the Message: ");
+        for (int i = 0; i < len; i++)
             a[i] = sc.nextInt();
-        }
-        for (int i = 0; i < 16; i++) {
+
+        int originalLen = len;
+        for (int i = 0; i < 16; i++)
             a[len++] = 0;
-        }
-        k = len - 16;
-        for (int i = 0; i < len; i++) {
-            b[i] = a[i];
-        }
+
+        int k = originalLen;
+        System.arraycopy(a, 0, b, 0, len);
+
+        CRC ob = new CRC();
         ob.div(a, k);
-        for (int i = 0; i < len; i++) a[i] = a[i] ^ b[i];
-        System.out.println("Data to be transmitted: ");
-        for (int i = 0; i < len; i++) {
-            System.out.print(a[i] + " ");
-        }
+
+        System.out.print("Data to be transmitted: ");
+        for (int i = 0; i < originalLen; i++)
+            System.out.print(b[i]);
+        for (int i = originalLen; i < len; i++)
+            System.out.print(a[i]);
         System.out.println();
+
         System.out.println("Enter the Received Data: ");
-        for (int i = 0; i < len; i++) {
-            a[i] = sc.nextInt();
-        }
+        String received = sc.next();
+        for (int i = 0; i < len; i++)
+            a[i] = received.charAt(i) - '0';
+
         ob.div(a, k);
-        for (int i = 0; i < len; i++) {
+
+        int flag = 0;
+        for (int i = 0; i < len; i++)
             if (a[i] != 0) {
                 flag = 1;
                 break;
             }
-        }
-        if (flag == 1)
-            System.out.println("ERROR in data");
-        else
-            System.out.println("NO ERROR");
+
+        System.out.println(flag == 1 ? "ERROR in data" : "NO ERROR");
+        sc.close();
     }
 }
