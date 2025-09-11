@@ -1,79 +1,57 @@
-import java.util.Scanner;
+import java.util.*;
 
-public class BellmanFord {
-    private int D[];
+public class lab03 {
+    private int[] dist;
     private int n;
-    public static final int MAX_VALUE = 999;
+    public static final int INF = 999;
 
-    public BellmanFord(int n) {
+    public lab03(int n) {
         this.n = n;
-        D = new int[n + 1];
+        dist = new int[n + 1];
     }
 
-    public void shortest(int s, int A[][]) {
-        // Step 1: Initialize distances
-        for (int i = 1; i <= n; i++) {
-            D[i] = MAX_VALUE;
-        }
-        D[s] = 0;
+    public void shortest(int src, int[][] graph) {
+        Arrays.fill(dist, INF);
+        dist[src] = 0;
 
-        // Step 2: Relax edges |V| - 1 times
-        for (int k = 1; k <= n - 1; k++) {
-            for (int i = 1; i <= n; i++) {
-                for (int j = 1; j <= n; j++) {
-                    if (A[i][j] != MAX_VALUE) {
-                        if (D[j] > D[i] + A[i][j]) {
-                            D[j] = D[i] + A[i][j];
-                        }
-                    }
+        for (int k = 1; k < n; k++)
+            for (int i = 1; i <= n; i++)
+                for (int j = 1; j <= n; j++)
+                    if (graph[i][j] != INF && dist[i] + graph[i][j] < dist[j])
+                        dist[j] = dist[i] + graph[i][j];
+
+        // Check for negative cycle
+        for (int i = 1; i <= n; i++)
+            for (int j = 1; j <= n; j++)
+                if (graph[i][j] != INF && dist[i] + graph[i][j] < dist[j]) {
+                    System.out.println("Graph contains a negative edge cycle");
+                    return;
                 }
-            }
-        }
 
-        // Step 3: Check for negative-weight cycles
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= n; j++) {
-                if (A[i][j] != MAX_VALUE) {
-                    if (D[j] > D[i] + A[i][j]) {
-                        System.out.println("The Graph contains a negative edge cycle!");
-                        return;
-                    }
-                }
-            }
-        }
-
-        // Step 4: Print results
-        for (int i = 1; i <= n; i++) {
-            System.out.println("Distance of source " + s + " to " + i + " is " + D[i]);
-        }
+        for (int i = 1; i <= n; i++)
+            System.out.println("Distance from " + src + " to " + i + " is " + dist[i]);
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        System.out.println("Enter the number of vertices: ");
+        System.out.print("Enter number of vertices: ");
         int n = sc.nextInt();
-
-        int A[][] = new int[n + 1][n + 1];
+        int[][] graph = new int[n + 1][n + 1];
 
         System.out.println("Enter the weighted adjacency matrix:");
-        for (int i = 1; i <= n; i++) {
+        for (int i = 1; i <= n; i++)
             for (int j = 1; j <= n; j++) {
-                A[i][j] = sc.nextInt();
-                if (i == j) {
-                    A[i][j] = 0;
-                } else if (A[i][j] == 0) {
-                    A[i][j] = MAX_VALUE;
-                }
+                graph[i][j] = sc.nextInt();
+                if (i == j)
+                    graph[i][j] = 0;
+                else if (graph[i][j] == 0)
+                    graph[i][j] = INF;
             }
-        }
 
-        System.out.println("Enter the source vertex: ");
-        int s = sc.nextInt();
+        System.out.print("Enter source vertex: ");
+        int src = sc.nextInt();
 
-        BellmanFord b = new BellmanFord(n);
-        b.shortest(s, A);
-
+        new lab03(n).shortest(src, graph);
         sc.close();
     }
 }
