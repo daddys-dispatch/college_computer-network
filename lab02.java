@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class SlidingWindowProtocol {
+public class lab02 {
     private static final int WINDOW_SIZE = 4, TOTAL_PACKETS = 10;
 
     static void sender() {
