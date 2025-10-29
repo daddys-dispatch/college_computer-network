@@ -1,4 +1,4 @@
-# Computer Network (BCS502) Lab Programs
+# Computer Network Lab Programs
 
 This repository contains Java and TCL programs for Computer Network (BCS502) Lab.
 
