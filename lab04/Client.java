@@ -27,7 +27,7 @@ class Client {
             }
             long size = Long.parseLong(din.readUTF());
             System.out.println("Receiving file: " + filename + " (" + (size / (1024 * 1024)) + " MB)");
-            System.out.println("Saving as file: client_" + filename);
+            System.out.println("Saving as file: received_" + filename);
 
             try (FileOutputStream fos = new FileOutputStream("client_" + filename)) {
                 byte[] buffer = new byte[1024];
