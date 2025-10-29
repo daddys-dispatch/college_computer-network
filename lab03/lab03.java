@@ -20,7 +20,6 @@ public class lab03 {
                     if (graph[i][j] != INF && dist[i] + graph[i][j] < dist[j])
                         dist[j] = dist[i] + graph[i][j];
 
-        // Check for negative cycle
         for (int i = 1; i <= n; i++)
             for (int j = 1; j <= n; j++)
                 if (graph[i][j] != INF && dist[i] + graph[i][j] < dist[j]) {
