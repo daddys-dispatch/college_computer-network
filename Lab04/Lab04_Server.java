@@ -2,7 +2,7 @@ import java.io.*;
 import java.net.*;
 import java.util.Scanner;
 
-public class Server {
+public class Lab04_Server {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter File Name: ");

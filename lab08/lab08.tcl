@@ -1,7 +1,7 @@
 set ns [new Simulator]
 
-set tr [open lab07.tr w]
-set nam [open lab07.nam w]
+set tr [open Lab08.tr w]
+set nam [open Lab08.nam w]
 $ns trace-all $tr
 $ns namtrace-all $nam
 
@@ -10,9 +10,9 @@ proc Finish {} {
     $ns flush-trace
     close $tr
     close $nam
-    exec nam lab07.nam &
+    exec nam Lab08.nam &
     
-    if {[catch {exec grep -c "^d" lab07.tr} drops]} {
+    if {[catch {exec grep -c "^d" Lab08.tr} drops]} {
         puts "Drop count unavailable (grep not found)"
     } else {
         puts "Total packets dropped: $drops"

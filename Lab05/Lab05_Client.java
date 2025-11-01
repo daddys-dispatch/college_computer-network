@@ -1,7 +1,7 @@
 import java.net.*;
 import java.util.Scanner;
 
-public class Client {
+public class Lab05_Client {
     public static void main(String[] args) {
         try (DatagramSocket socket = new DatagramSocket(); Scanner sc = new Scanner(System.in)) {
             System.out.print("Enter the message: ");

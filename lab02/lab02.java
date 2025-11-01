@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class lab02 {
+public class Lab02 {
     private static final int WINDOW_SIZE = 4, TOTAL_PACKETS = 10;
 
     static void sender() {
@@ -17,7 +17,8 @@ public class lab02 {
             }
             try {
                 Thread.sleep(1000);
-            } catch (InterruptedException e) {}
+            } catch (InterruptedException e) {
+            }
         }
         System.out.println("All packets sent and acknowledged.");
     }

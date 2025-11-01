@@ -1,8 +1,8 @@
 set ns [new Simulator]
 
-set tracefile [open 5.tr w]
+set tracefile [open Lab10.tr w]
 $ns trace-all $tracefile
-set namfile [open 5.nam w]
+set namfile [open Lab10.nam w]
 $ns namtrace-all $namfile
 
 $ns color 1 Blue
@@ -66,7 +66,7 @@ proc finish {} {
     $ns flush-trace
     close $tracefile
     close $namfile
-    exec nam 5.nam &
+    exec nam Lab10.nam &
     exit 0
 }
 

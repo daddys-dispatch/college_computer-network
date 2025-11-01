@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class lab06 {
+public class Lab07 {
     private static int min(int a, int b) {
         return Math.min(a, b);
     }

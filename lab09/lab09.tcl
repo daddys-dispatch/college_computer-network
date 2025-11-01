@@ -3,8 +3,8 @@ set ns [new Simulator]
 $ns color 1 Blue
 $ns color 2 Red
 
-set ntrace [open lab08.tr w]
-set namfile [open lab08.nam w]
+set ntrace [open Lab09.tr w]
+set namfile [open Lab09.nam w]
 $ns trace-all $ntrace
 $ns namtrace-all $namfile
 
@@ -18,8 +18,8 @@ proc Finish {} {
     $ns flush-trace
     close $ntrace
     close $namfile
-    exec nam lab08.nam &
-    set drop_count [exec grep "^d" lab08.tr | grep "ping" | wc -l]
+    exec nam Lab09.nam &
+    set drop_count [exec grep "^d" Lab09.tr | grep "ping" | wc -l]
     puts "\nPackets dropped: $drop_count"
     exit 0
 }

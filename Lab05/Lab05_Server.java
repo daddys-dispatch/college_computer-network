@@ -1,6 +1,6 @@
 import java.net.*;
 
-public class Server {
+public class Lab05_Server {
     public static void main(String[] args) {
         final int PORT = 6788;
         System.out.println("UDP Server running on port " + PORT + "...");

@@ -2,12 +2,12 @@ import java.math.BigInteger;
 import java.util.Random;
 import java.util.Scanner;
 
-public class lab05 {
+public class Lab06 {
     private BigInteger p, q, N, phi, e, d;
     private int bitlength = 512;
     private Random r = new Random();
 
-    public lab05() {
+    public Lab06() {
         p = BigInteger.probablePrime(bitlength, r);
         q = BigInteger.probablePrime(bitlength, r);
         N = p.multiply(q);
@@ -18,8 +18,8 @@ public class lab05 {
         }
         d = e.modInverse(phi);
 
-        System.out.println("Prime p: " + p);
-        System.out.println("Prime q: " + q);
+        System.out.println("Prime (p): " + p);
+        System.out.println("Prime (q): " + q);
         System.out.println("Public key (e): " + e);
         System.out.println("Private key (d): " + d);
     }
@@ -34,16 +34,18 @@ public class lab05 {
 
     private static String bytesToString(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
-        for (byte b : bytes) sb.append(b);
+        for (byte b : bytes)
+            sb.append(b);
         return sb.toString();
     }
 
     public static void main(String[] args) {
-        lab05 rsa = new lab05();
+        Lab06 rsa = new Lab06();
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Enter plaintext: ");
         String msg = sc.nextLine();
+        sc.close();
 
         System.out.println("\nEncrypting: " + msg);
         System.out.println("Plaintext in bytes: " + bytesToString(msg.getBytes()));

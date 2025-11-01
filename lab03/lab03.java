@@ -1,11 +1,11 @@
 import java.util.*;
 
-public class lab03 {
+public class Lab03 {
     private int[] dist;
     private int n;
     public static final int INF = 999;
 
-    public lab03(int n) {
+    public Lab03(int n) {
         this.n = n;
         dist = new int[n + 1];
     }
@@ -50,7 +50,7 @@ public class lab03 {
         System.out.print("Enter source vertex: ");
         int src = sc.nextInt();
 
-        new lab03(n).shortest(src, graph);
+        new Lab03(n).shortest(src, graph);
         sc.close();
     }
 }

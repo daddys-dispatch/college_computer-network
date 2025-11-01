@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class lab01 {
+public class Lab01 {
     void div(int a[], int k) {
         int gp[] = { 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
         for (int i = 0; i < k; i++)
@@ -25,7 +25,7 @@ public class lab01 {
         int k = originalLen;
         System.arraycopy(a, 0, b, 0, len);
 
-        lab01 ob = new lab01();
+        Lab01 ob = new Lab01();
         ob.div(a, k);
 
         System.out.print("Data to be transmitted: ");
